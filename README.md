@@ -430,3 +430,54 @@ git add -A
 git commit -m 'We can shoot ducks and keep score!'
 git tag step5
 ```
+
+### Step 6 - Recycle Ducks
+
+In this step we will add code to recycle ducks when they either escape or are killed.
+
+6a. Add a `recycle` function:
+
+```javascript
+// Move a dead or lost duck back to a random starting point
+// Note that the duck parameter is a jQuery object.
+function recycle(duck) {
+  console.log('recycle: duck = ' + duck.offset().top);
+
+  // move the duck back to the bottom with a random left/right location
+  var newLeft = Math.round(Math.random() * $(document).width());
+  duck.css('left', newLeft);
+  duck.css('bottom', 0);
+
+  // randomly choose a left facing or right facing orientation
+  if (Math.random() > 0.5) {
+    duck.removeClass('shot').show().addClass('left');
+  }
+  else {
+    duck.removeClass('shot').show().addClass('right');
+  }
+}
+```
+
+6b. Call the `recycle` function by replacing both occurrences of:
+
+    // TODO: recycle the duck
+
+with:
+
+    recycle(duck);
+
+6c. Have fun playing Duck Hunt!
+
+6d. Verify that a full `grunt` build passes:
+
+```bash
+grunt
+```
+
+6e. Save your work:
+
+```bash
+git add -A
+git commit -m 'Added recycling of ducks.'
+git tag step6
+```

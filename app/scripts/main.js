@@ -14,6 +14,25 @@ function isAlive(duck) {
   return duck.hasClass('left') || duck.hasClass('right');
 }
 
+// Move a dead or lost duck back to a random starting point
+// Note that the duck parameter is a jQuery object.
+function recycle(duck) {
+  console.log('recycle: duck = ' + duck.offset().top);
+
+  // move the duck back to the bottom with a random left/right location
+  var newLeft = Math.round(Math.random() * $(document).width());
+  duck.css('left', newLeft);
+  duck.css('bottom', 0);
+
+  // randomly choose a left facing or right facing orientation
+  if (Math.random() > 0.5) {
+    duck.removeClass('shot').show().addClass('left');
+  }
+  else {
+    duck.removeClass('shot').show().addClass('right');
+  }
+}
+
 function updateDuck(duck) {
 
   // bounce left to right
@@ -39,7 +58,7 @@ function updateDuck(duck) {
   if (duck.offset().top < 0) {
     duck.fadeOut(lostDuckFadeOutTime, function() {
       duck.removeClass('left right');
-      // TODO: recycle the duck
+      recycle(duck);
     });
   }
 }
@@ -48,7 +67,7 @@ function updateDuck(duck) {
 function die(duck) {
   ++numKilled;
   duck.removeClass('left right').addClass('shot').fadeOut(dieFadeOutTime, function () {
-    // TODO: recycle the duck
+    recycle(duck);
   });
 }
 
