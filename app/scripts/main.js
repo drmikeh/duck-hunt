@@ -3,7 +3,10 @@
 // jshint devel:true
 console.log('Welcome to Duck Hunt!');
 
+var numKilled = 0;
+
 // timing variables
+var dieFadeOutTime = 1000;
 var lostDuckFadeOutTime = 300;
 var gameSpeed = 500;              // 2 fps
 
@@ -41,8 +44,22 @@ function updateDuck(duck) {
   }
 }
 
+// this duck is now dead
+function die(duck) {
+  ++numKilled;
+  duck.removeClass('left right').addClass('shot').fadeOut(dieFadeOutTime, function () {
+    // TODO: recycle the duck
+  });
+}
+
+function updateScore() {
+  $('.score').html('Score: ' + numKilled);
+}
+
 // update the score, duck positions, orientations, and state
 function step() {
+
+  updateScore();
 
   $('.duck').each(function (i, duck) {
     duck = $(duck);
@@ -70,5 +87,8 @@ function step() {
 
 // get everything going.
 $(function() {
+  $('.duck').on('click', function(event) {
+    die($(event.target));
+  });
   setInterval(step, gameSpeed);
 });

@@ -365,3 +365,68 @@ git add -A
 git commit -m 'Ducks can fly!'
 git tag step4
 ```
+
+### Step 5 - Shoot the Ducks
+
+In this step we will add the JavaScript code to shoot the ducks, recycle dead or lost ducks, and keep score.
+
+5a. Add a function that kills a duck:
+
+```javascript
+// this duck is now dead
+function die(duck) {
+  ++numKilled;
+  duck.removeClass('left right').addClass('shot').fadeOut(dieFadeOutTime, function () {
+    // TODO: recycle the duck
+  });
+}
+```
+
+5b. Add a `numKilled` variable and initialize it to 0:
+
+```javascript
+var numKilled = 0;
+```
+
+5c. Add the `dieFadeOutTime` variable to the list of timing variables:
+
+```javascript
+// timing variables
+var dieFadeOutTime = 1000;
+```
+
+5d. Register the `die` function as a `click` event handler by editing the jQuery bootstrap code:
+
+```javascript
+// get everything going.
+$(function() {
+  $('.duck').on('click', function(event) {
+    die($(event.target));
+  });
+  setInterval(step, gameSpeed);
+});
+```
+
+5e. Add an `updateScore` function and call it from the `step` function:
+
+```javascript
+function updateScore() {
+  $('.score').html('Score: ' + numKilled);
+}
+
+// update the score, duck positions, orientations, and state
+function step() {
+
+  updateScore();
+  ...
+```
+
+5f. Test the game and verify that you can shoot and kill ducks and that the score is updated.
+
+5g. Save your work:
+
+```bash
+git add -A
+git commit -m 'We can shoot ducks and keep score!'
+git tag step5
+```
