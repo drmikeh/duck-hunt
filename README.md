@@ -27,7 +27,12 @@ Duck Hunt is a simple arcade game inspired by the original Nintendo Duck Hunt ga
 The steps below will demonstrate how to create this project from scratch:
 
 * [Step 1 - Setup The Project](#step-1---setup-the-project)
-
+* [Step 2 - Download the Images and Set Background](#step-2---download-the-images-and-set-background)
+* [Step 3 - Add Some Ducks](#step-3---add-some-ducks)
+* [Step 4 - Make the Ducks Fly](#step-4---make-the-ducks-fly)
+* [Step 5 - Shoot the Ducks](#step-5---shoot-the-ducks)
+* [Step 6 - Recycle Ducks](#step-6---recycle-ducks)
+* [Step 7 - Deploying to BitBalloon via Drag-and-Drop](#step-7---deploying-to-bitballoon-via-drag-and-drop)
 
 ### Step 1 - Setup The Project
 
@@ -481,3 +486,24 @@ git add -A
 git commit -m 'Added recycling of ducks.'
 git tag step6
 ```
+
+### Step 7 - Deploying to BitBalloon via Drag-and-Drop
+
+`BitBalloon` is an easy way to deploy *static* web apps to a production server.
+`BitBalloon` requires that you have an account in order to:
+
+* Keep a site for more than an hour
+* Make updates to your site.
+
+After creating a `BitBalloon` account, you can deploy your app by
+*dragging and dropping* your application to a drop zone at `bitballoon`.com.
+
+For a Yeoman/Grunt/Bower app, you will want to make sure your `dist` folder
+is up to date and drag and drop the `dist` folder to `BitBalloon`.
+
+```bash
+grunt    // the default grunt build will update the dist folder
+```
+
+Now simply drag and drop the `dist` folder to `Bitballoon` to create or update
+your production instance.
