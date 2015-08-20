@@ -45,3 +45,36 @@ body {
   font-size: 2em;
   font-family: Tahoma, Geneva, sans-serif;
 }
+
+.duck {
+  position: absolute;
+  width: 110px;
+  height: 115px;
+  background-image: url('/images/duckhunt.png');    // our sprite image
+  background-repeat: no-repeat;
+  bottom: 0;
+
+  // transition so that duck smoothly glides from old position to new position
+  transition: left 1s, top 1s, right 1s, bottom 1s;
+  transition-timing-function: linear;
+
+  // set the correct image from the image sprite for this duck's state
+  &.right {
+    background-position: -200px -160px;
+    &.flap {
+      background-position: -300px -160px;
+    }
+  }
+  &.left {
+    background-position: -100px -160px;
+    &.flap {
+      background-position: -430px -160px;
+    }
+  }
+
+  // replace the duck with a 'splat' image
+  &.shot {
+    z-index: -1;
+    background-image: url('/images/shot.png');
+  }
+}

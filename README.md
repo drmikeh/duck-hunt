@@ -103,6 +103,12 @@ wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/shot.
 <div class="score">Score: </div>
 ```
 
+You can also set the title in the <head> section of `index.html`:
+
+```html
+<title>Duck Hunt</title>
+```
+
 2c. Edit `app/styles/main.scss` and replace all of the content with:
 
 ```sass
@@ -162,4 +168,78 @@ body {
 git add -A
 git commit -m "Added images and set background."
 git tag step2
+```
+
+### Step 3 - Add Some Ducks
+
+We will use `<div>` elements for our ducks and make them _look_ like ducks by putting duck images in the divs via JavaScript.
+
+3a. Add 8 duck divs to `index.html` just under the score div:
+
+```html
+  <div class="duck left"  style="left: 100px"></div>
+  <div class="duck left"  style="left: 200px"></div>
+  <div class="duck left"  style="left: 300px"></div>
+  <div class="duck left"  style="left: 400px"></div>
+  <div class="duck right" style="left: 500px"></div>
+  <div class="duck right" style="left: 600px"></div>
+  <div class="duck right" style="left: 700px"></div>
+  <div class="duck right" style="left: 800px"></div>
+```
+
+3b. Add the SCSS Styling for the Ducks
+
+Add the following SCSS code to `main.scss`:
+
+```sass
+.duck {
+  position: absolute;
+  width: 110px;
+  height: 115px;
+  background-image: url('/images/duckhunt.png');    // our sprite image
+  background-repeat: no-repeat;
+  bottom: 0;
+
+  // transition so that duck smoothly glides from old position to new position
+  transition: left 1s, top 1s, right 1s, bottom 1s;
+  transition-timing-function: linear;
+
+  // set the correct image from the image sprite for this duck's state
+  &.right {
+    background-position: -200px -160px;
+    &.flap {
+      background-position: -300px -160px;
+    }
+  }
+  &.left {
+    background-position: -100px -160px;
+    &.flap {
+      background-position: -430px -160px;
+    }
+  }
+
+  // replace the duck with a 'splat' image
+  &.shot {
+    z-index: -1;
+    background-image: url('/images/shot.png');
+  }
+}
+```
+
+3c. Test that the Ducks are Visible
+
+At this point you should the heads of the ducks in the grass. For fun you can comment out the grass background to see the duck bodies:
+
+```sass
+// background-image: url('/images/grass.png');
+```
+
+Just remember to uncomment that line to get the grass back!
+
+3d. Save your work:
+
+```bash
+git add -A
+git commit -m "Added the ducks."
+git tag step3
 ```
