@@ -8,7 +8,7 @@ Duck Hunt is a simple arcade game inspired by the original Nintendo Duck Hunt ga
 
 * User stories: [Trello](https://trello.com/b/pV1mIbHk/duck-hunt)
 * Production deployment: [BitBalloon](http://juggler-horse-43246.bitballoon.com/)
-* GitHub: [Duck Hunt](https://github.com/drmikeh/duck_hunt)
+* GitHub: [Duck Hunt](https://github.com/drmikeh/duck-hunt)
 
 ## Technologies
 
@@ -20,7 +20,7 @@ Duck Hunt is a simple arcade game inspired by the original Nintendo Duck Hunt ga
 
 ## Screen Mockups
 
-![Mockup](https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/mockup.jpg)
+![Mockup](https://raw.githubusercontent.com/drmikeh/duck-hunt/master/app/images/mockup.jpg)
 
 ## Steps to Reproduce This Project
 
@@ -93,12 +93,12 @@ We need some images to make Duck Hunt come to life.
 
 ```bash
 mkdir app/images
-wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/background.jpg -O app/images/background.jpg
-wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/crosshair.png -O app/images/crosshair.png
-wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/duckhunt.png -O app/images/duckhunt.png
-wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/grass.png -O app/images/grass.png
-wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/mockup.jpg -O app/images/mockup.jpg
-wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/shot.png -O app/images/shot.png
+wget https://raw.githubusercontent.com/drmikeh/duck-hunt/master/app/images/background.jpg -O app/images/background.jpg
+wget https://raw.githubusercontent.com/drmikeh/duck-hunt/master/app/images/crosshair.png -O app/images/crosshair.png
+wget https://raw.githubusercontent.com/drmikeh/duck-hunt/master/app/images/duckhunt.png -O app/images/duckhunt.png
+wget https://raw.githubusercontent.com/drmikeh/duck-hunt/master/app/images/grass.png -O app/images/grass.png
+wget https://raw.githubusercontent.com/drmikeh/duck-hunt/master/app/images/mockup.jpg -O app/images/mockup.jpg
+wget https://raw.githubusercontent.com/drmikeh/duck-hunt/master/app/images/shot.png -O app/images/shot.png
 ```
 
 2b. Edit `app/index.html` and replace all of the HTMl in the <body> section with the following:
