@@ -103,7 +103,7 @@ wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/shot.
 <div class="score">Score: </div>
 ```
 
-You can also set the title in the <head> section of `index.html`:
+You can also set the title in the <head> section of `app/index.html`:
 
 ```html
 <title>Duck Hunt</title>
@@ -174,7 +174,7 @@ git tag step2
 
 We will use `<div>` elements for our ducks and make them _look_ like ducks by putting duck images in the divs via JavaScript.
 
-3a. Add 8 duck divs to `index.html` just under the score div:
+3a. Add 8 duck divs to `app/index.html` just under the score div:
 
 ```html
   <div class="duck left"  style="left: 100px"></div>
@@ -189,7 +189,7 @@ We will use `<div>` elements for our ducks and make them _look_ like ducks by pu
 
 3b. Add the SCSS Styling for the Ducks
 
-Add the following SCSS code to `main.scss`:
+Add the following SCSS code to `app/styles/main.scss`:
 
 ```sass
 .duck {
@@ -242,4 +242,126 @@ Just remember to uncomment that line to get the grass back!
 git add -A
 git commit -m "Added the ducks."
 git tag step3
+```
+
+### Step 4 - Make the Ducks Fly
+
+In this step we will make the ducks fly by using JavaScript to move the ducks and change their CSS classes.
+
+4a. Edit `app/scripts/main.js` and replace the content with the following:
+
+```javascript
+'use strict';
+
+// jshint devel:true
+console.log('Welcome to Duck Hunt!');
+
+// timing variables
+var lostDuckFadeOutTime = 300;
+var gameSpeed = 500;              // 2 fps
+
+function isAlive(duck) {
+  return duck.hasClass('left') || duck.hasClass('right');
+}
+
+function updateDuck(duck) {
+
+  // bounce left to right
+  if (duck.offset().left < 0) {
+    duck.removeClass('left').addClass('right');
+  }
+
+  // bounce right to left
+  if (duck.offset().left > $(document).width() - 200) {
+    duck.removeClass('right').addClass('left');
+  }
+
+  // Set the vertical position of the duck.
+  // Note that we set bottom equal to top to move the duck up exactly 1 duck
+  // height and this is "smoothed" out by the CSS3 transition settings.
+  var newBottom = $(document).height() - duck.offset().top;
+  duck.css('bottom', newBottom);
+
+  // flap those wings
+  duck.toggleClass('flap');
+
+  // if duck has escaped, fade it out and recycle it.
+  if (duck.offset().top < 0) {
+    duck.fadeOut(lostDuckFadeOutTime, function() {
+      duck.removeClass('left right');
+      // TODO: recycle the duck
+    });
+  }
+}
+
+// update the score, duck positions, orientations, and state
+function step() {
+
+  $('.duck').each(function (i, duck) {
+    duck = $(duck);
+    if (isAlive(duck)) {
+      updateDuck(duck);
+    }
+    else {
+      console.log('Skipping lost or dead duck');
+    }
+    console.log('duck: top=' + duck.offset().top + ', class=' + duck.attr('class'));
+  });
+
+  // move each left facing duck a little further to the left
+  $('.duck.left').each(function (i, duck) {
+    duck = $(duck);
+    duck.css('left', duck.offset().left - 30);
+  });
+
+  // move each right facing duck a little further to the right
+  $('.duck.right').each(function (i, duck) {
+    duck = $(duck);
+    duck.css('left', duck.offset().left + 30);
+  });
+}
+
+// get everything going.
+$(function() {
+  setInterval(step, gameSpeed);
+});
+```
+
+4b. Edit `package.json` and add `$` as a global to `eslintConfig`:
+
+```json
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "browser": true,
+      "mocha": true
+    },
+    "rules": {
+      "quotes": [
+        2,
+        "single"
+      ]
+    },
+    "globals": {
+      "$": false
+    }
+  }
+```
+
+4c. Test the results:
+
+You should see that the ducks are moving and flapping their wings. Also notice that when a duck reaches the top of the window it fades out and any ducks reaching the left or right edge will change direction.
+
+Also test that a full `grunt` build returns success:
+
+```bash
+grunt
+```
+
+4d. Save your work:
+
+```bash
+git add -A
+git commit -m 'Ducks can fly!'
+git tag step4
 ```
