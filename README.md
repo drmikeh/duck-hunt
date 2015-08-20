@@ -80,3 +80,86 @@ Now we are ready to start editing the HTML, SASS, and JavaScript files under
 the *app* folder. As you edit and save, you will see the changes in the
 browser.
 
+### Step 2 - Download the Images and Set Background
+
+We need some images to make Duck Hunt come to life.
+
+2a. Create an `images` directory and download the images into it.
+
+```bash
+mkdir app/images
+wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/background.jpg -O app/images/background.jpg
+wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/crosshair.png -O app/images/crosshair.png
+wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/duckhunt.png -O app/images/duckhunt.png
+wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/grass.png -O app/images/grass.png
+wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/mockup.jpg -O app/images/mockup.jpg
+wget https://raw.githubusercontent.com/drmikeh/duck_hunt/master/app/images/shot.png -O app/images/shot.png
+```
+
+2b. Edit `app/index.html` and replace all of the HTMl in the <body> section with the following:
+
+```html
+<div class="title">Duck Hunt!</div>
+<div class="score">Score: </div>
+```
+
+2c. Edit `app/styles/main.scss` and replace all of the content with:
+
+```sass
+$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+body, html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: green;
+  background-position: center;
+  background-image: url('/images/background.jpg');         // a nice meadow
+  background-size: cover;
+  cursor: url('/images/crosshair.png') 32 32, crosshair;   // our rifle crosshairs
+
+  // add some grass at the bottom that the ducks can hide in
+  &:after {
+    display: block;
+    content: '';
+    background-image: url('/images/grass.png');
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 197px;
+  }
+}
+
+.title {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  font-size: 2em;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+// Display the score in the upper right hand corner
+.score {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  font-size: 2em;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+```
+
+2d. Save your changes and test it all via `grunt serve`.
+
+2e. Save your work:
+
+```bash
+git add -A
+git commit -m "Added images and set background."
+git tag step2
+```

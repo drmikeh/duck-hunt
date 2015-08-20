@@ -4,90 +4,44 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+body, html {
+  height: 100%;
+  overflow: hidden;
 }
 
-/* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
+  background-color: green;
+  background-position: center;
+  background-image: url('/images/background.jpg');         // a nice meadow
+  background-size: cover;
+  cursor: url('/images/crosshair.png') 32 32, crosshair;   // our rifle crosshairs
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+  // add some grass at the bottom that the ducks can hide in
+  &:after {
+    display: block;
+    content: '';
+    background-image: url('/images/grass.png');
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 197px;
   }
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+// Display the title in the upper left hand corner
+.title {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  font-size: 2em;
+  font-family: Tahoma, Geneva, sans-serif;
 }
 
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-  p + h4 {
-    margin-top: 28px;
-  }
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+// Display the score in the upper right hand corner
+.score {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  font-size: 2em;
+  font-family: Tahoma, Geneva, sans-serif;
 }
