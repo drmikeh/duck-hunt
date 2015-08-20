@@ -46,6 +46,8 @@ body {
   font-family: Tahoma, Geneva, sans-serif;
 }
 
+$transition-speed: 1.0s;
+
 .duck {
   position: absolute;
   width: 110px;
@@ -55,7 +57,7 @@ body {
   bottom: 0;
 
   // transition so that duck smoothly glides from old position to new position
-  transition: left 1s, top 1s, right 1s, bottom 1s;
+  transition: left $transition-speed, top $transition-speed, right $transition-speed, bottom $transition-speed;
   transition-timing-function: linear;
 
   // set the correct image from the image sprite for this duck's state

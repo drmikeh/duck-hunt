@@ -197,6 +197,9 @@ We will use `<div>` elements for our ducks and make them _look_ like ducks by pu
 Add the following SCSS code to `app/styles/main.scss`:
 
 ```sass
+
+$transition-speed: 1.0s;
+
 .duck {
   position: absolute;
   width: 110px;
@@ -206,7 +209,7 @@ Add the following SCSS code to `app/styles/main.scss`:
   bottom: 0;
 
   // transition so that duck smoothly glides from old position to new position
-  transition: left 1s, top 1s, right 1s, bottom 1s;
+  transition: left $transition-speed, top $transition-speed, right $transition-speed, bottom $transition-speed;
   transition-timing-function: linear;
 
   // set the correct image from the image sprite for this duck's state
