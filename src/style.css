@@ -1,0 +1,61 @@
+body,
+html {
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    background-color: green;
+    background-position: center;
+    background-image: url('/background.jpg');
+    background-size: cover;
+    cursor: url('/crosshair.png') 32 32, crosshair;
+}
+body:after {
+    display: block;
+    content: '';
+    background-image: url('/grass.png');
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 197px;
+}
+.title {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    font-size: 2em;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+.score {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 2em;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+.duck {
+    position: absolute;
+    width: 110px;
+    height: 115px;
+    background-image: url('/duckhunt.png');
+    background-repeat: no-repeat;
+    bottom: 0;
+    transition: left 1s, top 1s, right 1s, bottom 1s;
+    transition-timing-function: linear;
+}
+.duck.right {
+    background-position: -200px -160px;
+}
+.duck.right.flap {
+    background-position: -300px -160px;
+}
+.duck.left {
+    background-position: -100px -160px;
+}
+.duck.left.flap {
+    background-position: -430px -160px;
+}
+.duck.shot {
+    z-index: -1;
+    background-image: url('/shot.png');
+}
